@@ -6,10 +6,13 @@ module.exports = (function() {
     var o = {};
 
     o.eventBus = require('./eventbus');
+    o.encoding = require('./encoding');
     o.http = require('./http');
-    o.Strings = require('./strings');
+    o.strings = require('./strings');
+    o.objects = require('./objects');
     o.guid = require('./guid');
     o.logger = reuqire('./logger');
+    o.numbers = require('./numbers');
 
     return o;
 })();
