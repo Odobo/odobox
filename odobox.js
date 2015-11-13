@@ -9,6 +9,7 @@ module.exports = (function() {
     o.http = require('./http');
     o.Strings = require('./strings');
     o.guid = require('./guid');
+    o.logger = reuqire('./logger');
 
     return o;
 })();
