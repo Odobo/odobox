@@ -11,9 +11,9 @@ module.exports = (function() {
     o.strings = require('./strings');
     o.objects = require('./objects');
     o.guid = require('./guid');
-    o.logger = reuqire('./logger');
+    o.logger = require('./logger');
     o.numbers = require('./numbers');
-    o.DateX = require('./odobox/datex');
+    o.DateX = require('./datex');
 
     o.toIntFixedWidth = require('./fixedwidthint');
 
