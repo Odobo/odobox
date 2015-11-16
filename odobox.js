@@ -14,5 +14,7 @@ module.exports = (function() {
     o.logger = reuqire('./logger');
     o.numbers = require('./numbers');
 
+    o.toIntFixedWidth = require('./fixedwidthint');
+
     return o;
 })();
