@@ -13,6 +13,7 @@ module.exports = (function() {
     o.guid = require('./guid');
     o.logger = reuqire('./logger');
     o.numbers = require('./numbers');
+    o.DateX = require('./odobox/datex');
 
     o.toIntFixedWidth = require('./fixedwidthint');
 
