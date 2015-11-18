@@ -39,9 +39,9 @@ module.exports = (function() {
             bus.send('restapi.register', {
                 "resource": resource,
                 endpoint: endpoint.path,
-                method: endpoint.method,
-                expects: endpoint.expects ? endpoint.expects : 'application/json',
-                produces: endpoint.produces ? endpoint.produces : 'application/json',
+                method: endpoint.method.toUpperCase(),
+                expects: endpoint.expects,
+                produces: endpoint.produces,
                 address: address
             })
         } else {
