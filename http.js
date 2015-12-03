@@ -2,7 +2,6 @@
  * Created by petermares on 28/10/2015.
  */
 
- console.log("LOADED HTTP")
 var bus = vertx.eventBus();
 var StringsX = require('./strings')
 
