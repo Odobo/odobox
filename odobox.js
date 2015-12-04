@@ -17,5 +17,7 @@ module.exports = (function() {
 
     o.toIntFixedWidth = require('./fixedwidthint');
 
+    o.restAPI = require('./restapi');
+
     return o;
 })();
