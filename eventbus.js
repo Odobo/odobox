@@ -36,7 +36,7 @@ module.exports = (function() {
      */
     function _registerRESTEndpoint(resource, endpoint, address) {
         if ( endpoint && typeof endpoint == 'object') {
-            bus.send('restapi.register', {
+            bus.publish('restapi.register', {
                 "resource": resource,
                 endpoint: endpoint.path,
                 method: endpoint.method.toUpperCase(),
