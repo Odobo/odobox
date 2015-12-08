@@ -152,9 +152,15 @@ module.exports = function() {
                     bus.send(body.address, bodyData ? bodyData : {}, {
                         "headers": headerObj
                     }, function(reply, err) {
-                        logger.info('[RESTAPI] Reply received: ' + JSON.stringify(reply.body()));
-                        response.write(JSON.stringify(reply.body()));
-                        response.end();
+                        if(!err){
+                            logger.info('[RESTAPI] Reply received: ' + JSON.stringify(reply.body()));
+                            response.write(JSON.stringify(reply.body()));
+                            response.end();
+                        } else {
+                            logger.warn('[RESTAPI] Fail received: [' + err.failureCode() + '] ' + err.message);
+                            response.setStatusCode(err.failureCode()).setStatusMessage(err.message);
+                            response.end();
+                        }
                     });
                 });
 
@@ -209,7 +215,7 @@ module.exports = function() {
      * @private
      */
     function _registerUtilityEndpoints() {
-        bus.send('restapi.register', {
+        bus.publish('restapi.register', {
             resource: 'restapi',
             endpoint: 'status',
             method: 'GET',
