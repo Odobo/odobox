@@ -120,10 +120,17 @@ module.exports = function() {
                     var bodyData;
                     var headers = request.headers().names();
 
-                    if ( body.expects ) {
-                        bodyData = body.expects == 'application/json'
-                            ? routingContext.getBodyAsJson()
-                            : routingContext.getBody()
+                    try {
+                        if ( body.expects ) {
+                            bodyData = body.expects == 'application/json'
+                                ? routingContext.getBodyAsJson()
+                                : routingContext.getBody()
+                        }
+                    } catch (e) {
+                        logger.warn('[RESTAPI] Failed to convert received body');
+                        response.setStatusCode(400).setStatusMessage("Bad Request");
+                        response.end();
+                        return;
                     }
 
                     response.setChunked(true);
