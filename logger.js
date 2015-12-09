@@ -35,7 +35,7 @@ function LoggerX(id) {
                 if ( m == type ) setting ^= true;
             });
         } else {
-            jLogger.error('No log type: ' + type);
+            jLogger.warn('No log type: ' + type);
         }
     };
 
@@ -58,7 +58,11 @@ function LoggerX(id) {
             _this[m] = function() {
                 var method = _settingsMap.get(m) ? 'info' : null;
                 if ( method ) {
-                    jLogger[method](arguments[0]);
+                    if ( typeof arguments[0] == 'object' ) {
+                        jLogger[method]('[' + _id + '] ' + JSON.stringify(arguments[0]));
+                    } else {
+                        jLogger[method]('[' + _id + '] ' + arguments[0]);
+                    }
                 }
             }
         });
