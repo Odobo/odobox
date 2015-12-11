@@ -12,7 +12,7 @@ module.exports = (function() {
             if (obj[p]) {
                 obj = obj[p];
             } else {
-                logger.error('resolveObjectPath ERROR! Path lookup failed (' + path + ')');
+                logger.warn('resolveObjectPath ERROR! Path lookup failed (' + path + ')');
                 obj = null;
             }
             return obj;

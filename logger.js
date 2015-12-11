@@ -48,6 +48,14 @@ function LoggerX(id) {
         return 'undefined';
     };
 
+    this.error = function() {
+        if ( typeof arguments[0] == 'object' ) {
+            jLogger.error('[' + _id + '] ERROR: ' + JSON.stringify(arguments[0]));
+        } else {
+            jLogger.error('[' + _id + '] ERROR: ' + arguments[0]);
+        }
+    };
+
     if ( jLogger ) {
         _methods.forEach(function(m) {
             // create the initial set of log settings (all false)
