@@ -40,5 +40,17 @@ module.exports = (function() {
         return (Array.isArray(o) ? o : [o]);
     };
 
+
+    o.isInArray = function (value, array) {
+        return array.indexOf(value) > -1;
+    };
+
+    o.removeValueFromArray = function (value, array) {
+        var index = array.indexOf(value);
+        if(index > -1){
+            array.splice(index, 1);
+        }
+    }
+
     return o;
 })();

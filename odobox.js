@@ -14,6 +14,7 @@ module.exports = (function() {
     o.logger = require('./logger');
     o.numbers = require('./numbers');
     o.DateX = require('./datex');
+    o.mongoObj = require('./mongo');
 
     o.toIntFixedWidth = require('./fixedwidthint');
 

@@ -117,14 +117,15 @@ module.exports = function() {
                 .handler(function(routingContext) {
                     var response = routingContext.response();
                     var request = routingContext.request();
-                    var bodyData;
+                    var bodyData = {};
                     var headers = request.headers().names();
 
                     try {
                         if ( body.expects ) {
-                            bodyData = body.expects == 'application/json'
-                                ? routingContext.getBodyAsJson()
-                                : routingContext.getBody()
+                            bodyData = routingContext.getBody();
+                            if ( body.expects == 'application/json' ) {
+                                bodyData = JSON.parse(bodyData);
+                            }
                         }
                     } catch (e) {
                         logger.warn('[RESTAPI] Failed to convert received body');
@@ -150,6 +151,7 @@ module.exports = function() {
                     switch ( body.method.toLowerCase() ) {
                         case    'get':
                             bodyData = _parseQueryStringToObject(request.query());
+                            bodyData._params = _parseParametersToObject(request.params());
                             break;
 
                         default:
@@ -237,13 +239,25 @@ module.exports = function() {
      * @private
      */
     function _parseQueryStringToObject(str) {
-        var a1 = str.split('&');
         var res = {};
-        a1.forEach(function(e) {
-            var c = e.split('=');
-            res[c[0]] = c[1];
-        });
+        if(str){
+            var a1 = str.split('&');
+            a1.forEach(function(e) {
+                var c = e.split('=');
+                res[c[0]] = c[1];
+            });
+        }
+        return res;
+    }
 
+    function _parseParametersToObject(params) {
+        var res = {};
+        if(params){
+            var names = params.names();
+            names.forEach(function(p) {
+                res[p]=params.get(p);
+            })
+        }
         return res;
     }
 

@@ -41,7 +41,7 @@ function LoggerX(id) {
 
     this.getLogLevel = function() {
         for ( var i = _methods.length-1; i >= 0; i-- ) {
-            if ( this.settingsMap.get(_methods[i]) == true ) {
+            if ( _settingsMap.get(_methods[i]) == true ) {
                 return _methods[i];
             }
         }
