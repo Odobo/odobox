@@ -25,11 +25,11 @@ MongoClientObj.prototype.saveObjectToDB = function(object, colName, cb) {
 
     this.mongoClient.save(collectionName, object, function (id, err) {
         if (!err && !id) {
-            cb(object);
+            id = object._id;
         } else {
             console.log("ERR " + err);
-            cb(err);
         }
+        cb(id, err);
     });
 };
 

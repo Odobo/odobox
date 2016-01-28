@@ -71,9 +71,7 @@ module.exports = function() {
 
                     status = 'started';
                     cb(true);
-                    //startFuture.complete();
                 } else {
-                    //startFuture.fail();
                     cb(false);
                 }
             });
