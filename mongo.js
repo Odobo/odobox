@@ -26,7 +26,7 @@ MongoClientObj.prototype.saveObjectToDB = function(object, colName, cb) {
     this.mongoClient.save(collectionName, object, function (id, err) {
         if (!err && !id) {
             id = object._id;
-        } 
+        }
         cb(id, err);
     });
 };
@@ -43,11 +43,11 @@ MongoClientObj.prototype.getDocumentsFromDB = function(query, colName, cb) {
                 });
                 query._id ? cb(queryResults[0]) : cb(queryResults);
             } else {
-                cb({statusCode: 404, message: "ERROR: Doc from '" + collectionName + "' not found: " + query});
+                cb(null, {statusCode: 404, message: "ERROR: Doc from '" + collectionName + "' not found: " + query});
             }
         } else {
             console.error("Error when fetching from '" + collectionName + "' the doc: " + query);
-            cb({statusCode: 500, message: res_err.message});
+            cb(null, {statusCode: 500, message: res_err.message});
         }
     });
 };
