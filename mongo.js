@@ -71,3 +71,13 @@ MongoClientObj.prototype.getDocumentsFromDB = function(query, colName, cb) {
         }
     });
 };
+
+MongoClientObj.prototype.removeDocumentsFromDB = function(query, colName, cb) {
+    var collectionName = colName ? colName : this.collectionName;
+
+    this.mongoClient.remove(collectionName, query, function(res, err) {
+        if ( cb ) {
+            cb(res, err);
+        }
+    });
+}
