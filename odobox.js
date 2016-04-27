@@ -35,6 +35,7 @@ module.exports = (function() {
     o.numbers = require('./numbers');
     o.DateX = require('./datex');
     o.mongoObj = require('./mongo');
+    o.timerControl = require('./timercontrol');
 
     o.toIntFixedWidth = require('./fixedwidthint');
 
