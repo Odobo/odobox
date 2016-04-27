@@ -8,11 +8,12 @@ function TimerControl() {
     this.timers = {};
 }
 
-TimerControl.prototype.startTimer = function(id, timeout, cb, context) {
+TimerControl.prototype.startTimer = function(id, data, timeout, cb, context) {
     var timerFn = context ? vertx.setTimer.bind(context) : vertx.setTimer;
 
     this.timers[id] = {
         id: id,
+        data: data,
         cb: cb,
         timerID: timerFn(timeout, function(tID) {
             if ( cb ) {
